@@ -2,6 +2,11 @@
 <#Purpose : Création d'un script automatisant la création d'utilisateurs, de groupes et d'OU à travers un menu contextuel#>
 <#Code by : Baptiste ROQUES 3SRC2#>
 
+
+
+import-module ActiveDirectory
+
+
 Write-Host "
 -------------------------------------------------------------------------
 |  __ \     | |         | |       | |                     (_)     | |  
@@ -22,6 +27,5 @@ Write-Host "Ce script a pour but la créations d'objet dans la base Active Direc
 "
 
 $choiseUsers = Read-Host -Prompt "Saisissez votre choix :"
-
 
 
