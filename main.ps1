@@ -33,8 +33,7 @@ Write-Host "Ce script a pour but la créations d'objet dans la base Active Direc
 if ( $choiseUsers == 1 )
     {
 
-        New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe")  -Enabled $True 
-
+        New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe") -Path "CN=Users,DC=Force2,DC=net"  -Enabled $True 
     } 
 
 if ( $choiseUsers == 2 )
@@ -44,7 +43,7 @@ if ( $choiseUsers == 2 )
 
 if ( $choiseUsers == 3 )
     {
-        New-ADOuser -Name (Read-Host -Prompt "")
+        New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") 
     }
 
 }
