@@ -4,7 +4,6 @@
 
 
 
-import-module ActiveDirectory
 
 
 Write-Host "
@@ -21,6 +20,7 @@ Write-Host "
 --------------------------------------------------------------------------------
 "
 
+function Get-Ajout {
 
 Write-Host "Ce script a pour but la créations d'objet dans la base Active Directory : 
 1. Creations d'utilisateur.
@@ -28,6 +28,17 @@ Write-Host "Ce script a pour but la créations d'objet dans la base Active Direc
 3. Creations d'une OU.
 "
 
-$choiseUsers = Read-Host -Prompt "Saisissez votre choix "
+[int]$choiseUsers = Read-Host -Prompt "Saisissez votre choix "
 
+if ( $choiseUsers == 1 )
+    {
+
+        New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe")  
+
+    } 
+  
+
+}
+
+Get-Ajout
 
