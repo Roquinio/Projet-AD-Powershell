@@ -25,7 +25,7 @@ function Get-Ajout {
 Write-Host "Ce script a pour but la créations d'objet dans la base Active Directory : 
 1. Creations d'utilisateur.
 2. Creations d'un groupe.
-3. Creations d'une OU.
+3. Creations d'une unité d'organisation.
 "
 
 [int]$choiseUsers = Read-Host -Prompt "Saisissez votre choix "
