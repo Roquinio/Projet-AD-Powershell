@@ -26,6 +26,6 @@ Write-Host "Ce script a pour but la créations d'objet dans la base Active Direc
 3. Creations d'une OU.
 "
 
-$choiseUsers = Read-Host -Prompt "Saisissez votre choix :"
+$choiseUsers = Read-Host -Prompt "Saisissez votre choix "
 
 
