@@ -1,6 +1,6 @@
 ﻿<#Projet AD - Scipt - Powershell#>
 <#Purpose : Création d'un script automatisant la modification d'objet de la base Active directory tel que :
-            la créations la suppression d'utilisateurs, de groupes et d'OU à travers un menu contextuel#>
+            la créations la suppression d'utilisateurs, de groupes et d'OU à travers un menu contextuel.  #>
 <#Code by : Baptiste ROQUES 3SRC2#>
 
 
@@ -24,7 +24,7 @@ Write-Host "
 function Get-Menu  {
 
     Write-Host "==================Menu=================="
-
+    Write-Host ""
     Write-Host "Que souhaitez-vous faire ?
      1. Faire un ajout dans la base Active Directory
      2. Modifier un objet de la base Active Directory
@@ -50,7 +50,7 @@ Get-Menu
 function Get-Ajout {
 
     
-    Write-Host "Ce script a pour but la créations d'objet dans la base Active Directory : 
+    Write-Host "==================Ajouter================== 
     1. Creations d'utilisateur.
     2. Creations d'un groupe.
     3. Creations d'une unité d'organisation.
@@ -70,6 +70,61 @@ function Get-Ajout {
         4 {  until (Get-Menu) }
 
         Default { Write-Host "Erreur, veuillez réessayer"; Get-Ajout }
+        }
+    
+
+}
+
+
+function Get-Modif {
+
+    Write-Host "==================Modifications==================
+    1. Modification d'un utilisateur.
+    2. Modification d'un groupe.
+    3. Modification d'une unité d'organisation.
+    4. Retourner au menu principal
+    "
+    [int]$choiseModif = Read-Host -Prompt "Saisissez votre choix "
+
+    switch ($choiseModif) 
+        {
+        1 {   }
+
+        2 {   }
+       
+        3 {   }
+
+        4 {  until (Get-Menu) }
+
+        Default { Write-Host "Erreur, veuillez réessayer"; Get-Modif }
+        }
+    
+
+}
+
+
+
+function Get-Suppr {
+
+    Write-Host "==================Supressions==================
+    1. Supression d'un utilisateur.
+    2. Supression d'un groupe.
+    3. Supression d'une unité d'organisation.
+    4. Retourner au menu principal
+    "
+    [int]$choiseSuppr = Read-Host -Prompt "Saisissez votre choix "
+
+    switch ($choiseSuppr) 
+        {
+        1 {   }
+
+        2 {   }
+       
+        3 {   }
+
+        4 {  until (Get-Menu) }
+
+        Default { Write-Host "Erreur, veuillez réessayer"; Get-Suppr }
         }
     
 
