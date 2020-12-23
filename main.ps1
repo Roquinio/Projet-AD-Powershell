@@ -1,4 +1,4 @@
-<#Projet AD - Scipt - Powershell#>
+﻿<#Projet AD - Scipt - Powershell#>
 <#Purpose : Création d'un script automatisant la modification d'objet de la base Active directory tel que la créations ou la suppression d'utilisateurs, de groupes et d'OU à travers un menu contextuel#>
 <#Code by : Baptiste ROQUES 3SRC2#>
 
@@ -20,9 +20,10 @@ Write-Host "
 --------------------------------------------------------------------------------
 "
 
-function Get-Menu {
+function Get-Menu  {
 
     Write-Host "==================Menu=================="
+
     Write-Host "Que souhaitez-vous faire ?
      1. Faire un ajout dans la base Active Directory
      2. Modifier un objet de la base Active Directory
@@ -46,6 +47,7 @@ Get-Menu
 
 function Get-Ajout {
 
+    
     Write-Host "Ce script a pour but la créations d'objet dans la base Active Directory : 
     1. Creations d'utilisateur.
     2. Creations d'un groupe.
