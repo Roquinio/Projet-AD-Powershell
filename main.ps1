@@ -1,5 +1,6 @@
 ﻿<#Projet AD - Scipt - Powershell#>
-<#Purpose : Création d'un script automatisant la modification d'objet de la base Active directory tel que la créations ou la suppression d'utilisateurs, de groupes et d'OU à travers un menu contextuel#>
+<#Purpose : Création d'un script automatisant la modification d'objet de la base Active directory tel que :
+            la créations la suppression d'utilisateurs, de groupes et d'OU à travers un menu contextuel#>
 <#Code by : Baptiste ROQUES 3SRC2#>
 
 
