@@ -45,6 +45,7 @@ function Get-Menu  {
 
 Get-Menu
 
+
 function Get-Ajout {
 
     
@@ -65,12 +66,11 @@ function Get-Ajout {
        
         3 {  New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") }
 
-        4 {  Get-Menu }
+        4 {  until (Get-Menu) }
 
         Default { Write-Host "Erreur, veuillez réessayer"; Get-Ajout }
         }
     
 
 }
-
 
