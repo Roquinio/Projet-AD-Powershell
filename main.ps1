@@ -22,29 +22,23 @@ Write-Host "
 
 function Get-Ajout {
 
-Write-Host "Ce script a pour but la créations d'objet dans la base Active Directory : 
-1. Creations d'utilisateur.
-2. Creations d'un groupe.
-3. Creations d'une unité d'organisation.
-"
+    Write-Host "Ce script a pour but la créations d'objet dans la base Active Directory : 
+    1. Creations d'utilisateur.
+    2. Creations d'un groupe.
+    3. Creations d'une unité d'organisation.
+    "
 
-[int]$choiseUsers = Read-Host -Prompt "Saisissez votre choix "
+    [int]$choiseUsers = Read-Host -Prompt "Saisissez votre choix "
 
-if ( $choiseUsers == 1 )
-    {
+    switch ($choiseUsers) 
+        {
+        1 {  New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe") -Path "CN=Users,DC=Force2,DC=net"  -Enabled $True }
 
-        New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe") -Path "CN=Users,DC=Force2,DC=net"  -Enabled $True 
-    } 
-
-if ( $choiseUsers == 2 )
-    {
-        New-ADGroup -Name (Read-Host -Prompt "Saissez le nom du groupe") 
-    }
-
-if ( $choiseUsers == 3 )
-    {
-        New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") 
-    }
+        2 {  New-ADGroup -Name (Read-Host -Prompt "Saissez le nom du groupe") }
+       
+        3 {  New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") }
+        }
+    
 
 }
 
