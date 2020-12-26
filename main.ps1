@@ -88,7 +88,7 @@ function Get-Modif {
 
     switch ($choiseModif) 
         {
-        1 {   }
+        1 {  until (Get-userModif)   }  
 
         2 {   }
        
@@ -130,3 +130,26 @@ function Get-Suppr {
 
 }
 
+
+
+
+function Get-userModif {
+
+    [str]$userList = ""
+    Get-ADUser -Filter (Read-Host -Prompt "Quel utilisateur souhaitez vous modifier ?") -SearchBase "CN=Users,DC=Force2,DC=net" | Format-Table Name  > $userList
+    [int]$modifArg = (Read-Host -Prompt "Que souhaitez-vous faire ? ?")
+
+    Write-Host "1. Modifier une valeur.
+    2. Suprimer une valeur."
+
+    switch ($modifArg) {
+        1 { foreach ($user in $userList) { Set-ADUser -Identity $user  }  }
+
+        2 {  }
+        Default { Write-Host "Erreur, veuillez réessayer"; Get-userModif}
+    }
+
+
+
+
+}
