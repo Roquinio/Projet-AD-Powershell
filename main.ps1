@@ -1,7 +1,7 @@
 ﻿<#Projet AD - Scipt - Powershell#>
 <#Purpose : Création d'un script automatisant la modification d'objet de la base Active directory tel que :
             la créations la suppression d'utilisateurs, de groupes et d'OU à travers un menu contextuel.  #>
-<#Code by : Baptiste ROQUES 3SRC2#>
+<#Coded by : Baptiste ROQUES 3SRC2#>
 
 
 
@@ -135,7 +135,7 @@ function Get-Suppr {
 
 function Get-userModif {
 
-    [str]$userList = ""
+    
     Get-ADUser -Filter (Read-Host -Prompt "Quel utilisateur souhaitez vous modifier ?") -SearchBase "CN=Users,DC=Force2,DC=net" | Format-Table Name,Groupe,OU  > $userList
     [int]$modifArg = (Read-Host -Prompt "Que souhaitez-vous faire ?")
 
@@ -143,13 +143,37 @@ function Get-userModif {
     2. Suprimer une valeur."
 
     switch ($modifArg) {
-        1 { [string]$modifValeur = (Read-Host -Prompt "Que souhaitez-vous modifier : Name, Group ou OU ?") ;foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{$modifValeur= (Read-Host -Prompt "Saisissez votre modification :")  }}  }
+        1 { Get-modifValeur  }
 
         2 {  }
         Default { Write-Host "Erreur, veuillez réessayer"; Get-userModif}
     }
 
 
+    [string]$modifValeur = (Read-Host -Prompt "Que souhaitez-vous modifier : Password, Group ou OU ?") ;foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{$modifValeur= (Read-Host -Prompt "Saisissez votre modification :")  }} 
 
+}
+
+function Get-modifValeur {
+
+    [str]$userList = ""
+    Write-Host "==================Modifications==================
+    1. Changement de groupe.
+    2. Changer le mot de passe.
+    3. Changement d'unité d'organisation.
+    4. Retourner au menu principal
+    "
+    [int]$modifChoix = Read-Host -Prompt "Que souhaitez-vous modifier ?"
+    
+    switch ($modifArg) {
+        1 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } }
+        2 { }
+        3 { }
+
+        Default { Write-Host "Erreur, veuillez réessayer"; Get-modifValeur}
+
+        }
+    }
+    
 
 }
