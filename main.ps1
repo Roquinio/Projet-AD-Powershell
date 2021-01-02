@@ -165,7 +165,7 @@ function Get-modifValeur {
     "
     [int]$modifChoix = Read-Host -Prompt "Que souhaitez-vous modifier ?"
     
-    switch ($modifArg) {
+    switch ($modifChoix) {
         1 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } }
         2 { }
         3 { }
@@ -176,4 +176,3 @@ function Get-modifValeur {
     }
     
 
-}
