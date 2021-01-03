@@ -4,7 +4,7 @@
 <#Coded by : Baptiste ROQUES 3SRC2#>
 
 
-
+<#  Ajouter un check de la base Active Directory #>
 
 
 Write-Host "
@@ -21,7 +21,7 @@ Write-Host "
 --------------------------------------------------------------------------------
 "
 
-function Get-Menu  {
+function show-Menu  {
 
     Write-Host "==================Menu=================="
     Write-Host ""
@@ -34,20 +34,20 @@ function Get-Menu  {
     [int]$choiseMenus = Read-Host -Prompt "Saisissez votre choix "
 
     switch ($choiseMenus) {
-        1 { Get-Ajout }
-        2 { Get-Modif }
-        3 { Get-Suppr }
+        1 { show-Ajout }
+        2 { show-Modif }
+        3 { show-Suppr }
         4 { Exit }
-        Default { Write-Host "Erreur, veuillez réessayer"; Get-Menu }
+        Default { Write-Host "Erreur, veuillez réessayer"; show-Menu }
     }
          
                 
 }
 
-Get-Menu
+show-Menu
 
 
-function Get-Ajout {
+function show-Ajout {
 
     
     Write-Host "==================Ajouter================== 
@@ -67,16 +67,16 @@ function Get-Ajout {
        
         3 {  New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") }
 
-        4 {  until (Get-Menu) }
+        4 {  until (show-Menu) }
 
-        Default { Write-Host "Erreur, veuillez réessayer"; Get-Ajout }
+        Default { Write-Host "Erreur, veuillez réessayer"; show-Ajout }
         }
     
 
 }
 
 
-function Get-Modif {
+function show-Modif {
 
     Write-Host "==================Modifications==================
     1. Modification d'un utilisateur.
@@ -88,15 +88,15 @@ function Get-Modif {
 
     switch ($choiseModif) 
         {
-        1 {  until (Get-userModif)   }  
+        1 {  until (show-userModif)   }  
 
         2 {   }
        
         3 {   }
 
-        4 {  until (Get-Menu) }
+        4 {  until (show-Menu) }
 
-        Default { Write-Host "Erreur, veuillez réessayer"; Get-Modif }
+        Default { Write-Host "Erreur, veuillez réessayer"; show-Modif }
         }
     
 
@@ -104,7 +104,7 @@ function Get-Modif {
 
 
 
-function Get-Suppr {
+function show-Suppr {
 
     Write-Host "==================Supressions==================
     1. Supression d'un utilisateur.
@@ -122,9 +122,9 @@ function Get-Suppr {
        
         3 {   }
 
-        4 {  until (Get-Menu) }
+        4 {  until (show-Menu) }
 
-        Default { Write-Host "Erreur, veuillez réessayer"; Get-Suppr }
+        Default { Write-Host "Erreur, veuillez réessayer"; show-Suppr }
         }
     
 
@@ -133,7 +133,7 @@ function Get-Suppr {
 
 
 
-function Get-userModif {
+function show-userModif {
 
     
     
@@ -143,10 +143,10 @@ function Get-userModif {
     2. Suprimer une valeur."
 
     switch ($modifArg) {
-        1 { Get-modifValeur}
+        1 { show-modifValeur}
 
         2 {  }
-        Default { Write-Host "Erreur, veuillez réessayer"; Get-userModif}
+        Default { Write-Host "Erreur, veuillez réessayer"; show-userModif}
     }
 
 
@@ -154,7 +154,7 @@ function Get-userModif {
 
 }
 
-function Get-modifValeur {
+function show-modifValeur {
 
     [str]$userList = ""
     Get-ADUser -Filter (Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?") -SearchBase "CN=Users,DC=Force2,DC=net" | Format-Table Name,Groupe,OU  > $userList
@@ -170,9 +170,9 @@ function Get-modifValeur {
         1 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } }
         2 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Password=(Read-Host -Prompt "Saisissez le nouveau mot de passe:") } } }
         3 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } } }
-        4 { until (Get-Menu) }
+        4 { until (show-Menu) }
 
-        Default { Write-Host "Erreur, veuillez réessayer"; Get-modifValeur}
+        Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
 
         }
     }
@@ -181,7 +181,7 @@ function Get-modifValeur {
 
 
 
-function Get-supprValeur {
+function show-supprValeur {
 
 
 
