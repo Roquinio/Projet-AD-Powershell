@@ -136,14 +136,14 @@ function Get-Suppr {
 function Get-userModif {
 
     
-    Get-ADUser -Filter (Read-Host -Prompt "Quel utilisateur souhaitez vous modifier ?") -SearchBase "CN=Users,DC=Force2,DC=net" | Format-Table Name,Groupe,OU  > $userList
+    
     [int]$modifArg = (Read-Host -Prompt "Que souhaitez-vous faire ?")
 
     Write-Host "1. Modifier une valeur.
     2. Suprimer une valeur."
 
     switch ($modifArg) {
-        1 { Get-modifValeur  }
+        1 { Get-modifValeur}
 
         2 {  }
         Default { Write-Host "Erreur, veuillez réessayer"; Get-userModif}
@@ -157,6 +157,7 @@ function Get-userModif {
 function Get-modifValeur {
 
     [str]$userList = ""
+    Get-ADUser -Filter (Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?") -SearchBase "CN=Users,DC=Force2,DC=net" | Format-Table Name,Groupe,OU  > $userList
     Write-Host "==================Modifications==================
     1. Changement de groupe.
     2. Changer le mot de passe.
@@ -167,8 +168,9 @@ function Get-modifValeur {
     
     switch ($modifChoix) {
         1 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } }
-        2 { }
-        3 { }
+        2 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Password=(Read-Host -Prompt "Saisissez le nouveau mot de passe:") } } }
+        3 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } } }
+        4 { until (Get-Menu) }
 
         Default { Write-Host "Erreur, veuillez réessayer"; Get-modifValeur}
 
@@ -176,3 +178,14 @@ function Get-modifValeur {
     }
     
 
+
+
+
+function Get-supprValeur {
+
+
+
+
+
+
+}
