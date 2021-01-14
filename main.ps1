@@ -21,6 +21,8 @@ Write-Host "
 --------------------------------------------------------------------------------
 "
 
+import-module ActiveDirectory
+
 function show-Menu  {
 
     Write-Host "==================Menu=================="
@@ -134,23 +136,21 @@ function show-Suppr {
 
 
 function show-userModif {
-
-    
-    
+   
     [int]$modifArg = (Read-Host -Prompt "Que souhaitez-vous faire ?")
 
     Write-Host "1. Modifier une valeur.
     2. Suprimer une valeur."
 
     switch ($modifArg) {
-        1 { show-modifValeur}
+        1 { show-modifValeur }
 
-        2 {  }
+        2 { show-supprValeur }
+
         Default { Write-Host "Erreur, veuillez réessayer"; show-userModif}
     }
 
 
-    [string]$modifValeur = (Read-Host -Prompt "Que souhaitez-vous modifier : Password, Group ou OU ?") ;foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{$modifValeur= (Read-Host -Prompt "Saisissez votre modification :")  }} 
 
 }
 
@@ -169,7 +169,7 @@ function show-modifValeur {
     switch ($modifChoix) {
         1 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } }
         2 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Password=(Read-Host -Prompt "Saisissez le nouveau mot de passe:") } } }
-        3 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } } }
+        3 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } } }
         4 { until (show-Menu) }
 
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
