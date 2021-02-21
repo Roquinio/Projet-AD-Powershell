@@ -162,7 +162,7 @@ function Main-AD {
 
     [str]$userList = Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?"
 
-    Get-ADUser -Filter {Name -like $userList} -SearchBase "CN=Users,DC=Force2,DC=net"
+    Get-ADUser -Filter 'name -like $userList' -SearchBase "CN=Users,DC=Force2,DC=net"
     
     <#Get-ADUser -Filter (Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?") -SearchBase "CN=Users,DC=Force2,DC=net"  > $userList #>
 
