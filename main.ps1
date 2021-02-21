@@ -1,4 +1,6 @@
-﻿<#Projet AD - Scipt - Powershell#>
+﻿
+
+<#Projet AD - Scipt - Powershell#>
 <#Purpose : Création d'un script automatisant la modification d'objet de la base Active directory tel que :
             la créations la suppression d'utilisateurs, de groupes et d'OU à travers un menu contextuel.  #>
 <#Coded by : Baptiste ROQUES 3SRC2#>
@@ -23,7 +25,9 @@ Write-Host "
 
 import-module ActiveDirectory
 
-function show-Menu  {
+
+function Main-AD {
+    function show-Menu  {
 
     Write-Host "==================Menu=================="
     Write-Host ""
@@ -44,12 +48,12 @@ function show-Menu  {
     }
          
                 
-}
-
-show-Menu
+    }
 
 
-function show-Ajout {
+
+
+    function show-Ajout {
 
     
     Write-Host "==================Ajouter================== 
@@ -75,10 +79,10 @@ function show-Ajout {
         }
     
 
-}
+    }
 
 
-function show-Modif {
+    function show-Modif {
 
     Write-Host "==================Modifications==================
     1. Modification d'un utilisateur.
@@ -102,11 +106,10 @@ function show-Modif {
         }
     
 
-}
+    }
 
 
-
-function show-Suppr {
+    function show-Suppr {
 
     Write-Host "==================Supressions==================
     1. Supression d'un utilisateur.
@@ -130,12 +133,12 @@ function show-Suppr {
         }
     
 
-}
+    }
 
 
 
 
-function show-userModif {
+    function show-userModif {
    
     [int]$modifArg = (Read-Host -Prompt "Que souhaitez-vous faire ?")
 
@@ -152,9 +155,9 @@ function show-userModif {
 
 
 
-}
+    }
 
-function show-modifValeur {
+    function show-modifValeur {
 
     [str]$userList = ""
     Get-ADUser -Filter (Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?") -SearchBase "CN=Users,DC=Force2,DC=net" | Format-Table Name,Groupe,OU  > $userList
@@ -180,12 +183,18 @@ function show-modifValeur {
 
 
 
-
-function show-supprValeur {
-
+    function show-supprValeur {
 
 
 
 
+
+
+    }
+
+
+    show-Menu
 
 }
+
+Main-AD
