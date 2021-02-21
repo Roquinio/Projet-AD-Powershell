@@ -160,7 +160,7 @@ function Main-AD {
 
     function show-modifValeur {
 
-    [str]$userList = Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?"
+    $userList=Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?"
 
     Get-ADUser -Filter 'name -like $userList' -SearchBase "CN=Users,DC=Force2,DC=net"
     
