@@ -24,6 +24,7 @@ Write-Host "
 import-module ActiveDirectory
 
 function Main-AD {
+
     function show-Menu  {
 
     Write-Host "==================Menu=================="
@@ -37,17 +38,19 @@ function Main-AD {
     [int]$choiseMenus = Read-Host -Prompt "Saisissez votre choix "
 
     switch ($choiseMenus) {
-        1 { show-Ajout }
+        1 { return show-Ajout }
         2 { show-Modif }
         3 { show-Suppr }
         4 { Exit }
         Default { Write-Host "Erreur, veuillez réessayer"; show-Menu }
     }
          
-                
-    }
-
+    }           
+    
+    
     show-Menu
+
+    
     function show-Ajout {
 
     
@@ -103,8 +106,6 @@ function Main-AD {
 
     }
 
-
-
     function show-Suppr {
 
     Write-Host "==================Supressions==================
@@ -130,8 +131,6 @@ function Main-AD {
     
 
     }
-
-
 
     function show-userModif {
    
@@ -173,7 +172,7 @@ function Main-AD {
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
 
         }
-        }
+    }
     
     function show-supprValeur {
 
@@ -185,4 +184,6 @@ function Main-AD {
     }
 
 }
+
+Main-AD
 
