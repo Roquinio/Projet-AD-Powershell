@@ -48,7 +48,7 @@ function Main-AD {
     }           
     
     
-    show-Menu
+    
 
     
     function show-Ajout {
@@ -182,6 +182,8 @@ function Main-AD {
 
 
     }
+
+    show-Menu
 
 }
 
