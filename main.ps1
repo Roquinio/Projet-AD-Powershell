@@ -138,7 +138,8 @@ function Main-AD {
 
     function show-userModif {
 
-    Write-Host "1. Modifier une valeur.
+    Write-Host "
+    1. Modifier une valeur.
     2. Suprimer une valeur."
    
     [int]$modifArg = (Read-Host -Prompt "Que souhaitez-vous faire ?")
