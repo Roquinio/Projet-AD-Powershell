@@ -92,13 +92,13 @@ function Main-AD {
 
     switch ($choiseModif) 
         {
-        1 {  until (show-userModif)   }  
+        1 { show-userModif }  
 
         2 {   }
        
         3 {   }
 
-        4 {  until (show-Menu) }
+        4 { show-Menu }
 
         Default { Write-Host "Erreur, veuillez réessayer"; show-Modif }
         }
