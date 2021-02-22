@@ -177,7 +177,7 @@ function Main-AD {
     
     switch ($modifChoix) {
         1 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } }
-        2 { foreach ($user in $userList) { Set-ADAccountPassword -Identity $user -Reset -NewPassword(ConvertTo-SecureString -AsPlainText Read-Host -Prompt "Saisissez le nouveau mot de passe:") } } 
+        2 { foreach ($user in $userList) { Set-ADAccountPassword -Identity $user -Reset -NewPassword(ConvertTo-SecureString -AsPlainText -Force Read-Host -Prompt "Saisissez le nouveau mot de passe:") } } 
         3 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } } }
         4 { show-Menu }
 
