@@ -179,14 +179,11 @@ function Main-AD {
         1 { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } 
         2 { Set-ADAccountPassword -Identity $user -Reset -NewPassword(ConvertTo-SecureString -AsSecureString (Read-Host -Prompt "Saisissez le nouveau mot de passe:") ) } 
         3 { Set-ADUser -Identity $user -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } }
-        4 { show-Menu }
-    }
-        
-
+        4 { show-Menu } }
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
 
         }
-    }
+    
     
 
 
