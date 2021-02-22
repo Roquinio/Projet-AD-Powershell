@@ -94,7 +94,7 @@ function Main-AD {
         {
         1 { show-userModif }  
 
-        2 {   }
+        2 { show-groupModif }
        
         3 {   }
 
@@ -119,6 +119,7 @@ function Main-AD {
 
     switch ($choiseSuppr) 
         {
+            
         1 {   }
 
         2 {   }
@@ -176,9 +177,9 @@ function Main-AD {
     [int]$modifChoix = Read-Host -Prompt "Que souhaitez-vous modifier ?"
     
     switch ($modifChoix) {
-        1 { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } 
+        1 { Set-ADUser -Identity $userList -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } 
         2 { Set-ADAccountPassword -Identity $userList -Reset -NewPassword(Read-Host -AsSecureString -Prompt "Saisissez le nouveau mot de passe:");Write-Host "Le mot de passe à été changé !" } 
-        3 { Set-ADUser -Identity $user -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } }
+        3 { Set-ADUser -Identity $userList -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } }
         4 { show-Menu } 
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
 
