@@ -71,7 +71,7 @@ function Main-AD {
        
         3 {  New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") }
 
-        4 {  until (show-Menu) }
+        4 { show-Menu }
 
         Default { Write-Host "Erreur, veuillez réessayer"; show-Ajout }
         }
@@ -125,7 +125,7 @@ function Main-AD {
        
         3 {   }
 
-        4 {  until (show-Menu) }
+        4 { show-Menu }
 
         Default { Write-Host "Erreur, veuillez réessayer"; show-Suppr }
         }
@@ -177,9 +177,9 @@ function Main-AD {
     
     switch ($modifChoix) {
         1 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Group=(Read-Host -Prompt "Saisissez le nom du groupe:") } } }
-        2 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{Password=(Read-Host -Prompt "Saisissez le nouveau mot de passe:") } } }
+        2 { foreach ($user in $userList) { Set-ADAccountPassword -Identity $user -Reset -NewPassword(ConvertTo-SecureString -AsPlainText Read-Host -Prompt "Saisissez le nouveau mot de passe:") } } 
         3 { foreach ($user in $userList) { Set-ADUser -Identity $user -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } } }
-        4 { until (show-Menu) }
+        4 { show-Menu }
 
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
 
