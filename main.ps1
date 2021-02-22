@@ -178,7 +178,7 @@ function Main-AD {
     
     switch ($modifChoix) {
         1 { Add-ADGroupMember -Identity (Read-Host -Prompt "Saisissez le nom du groupe:") -Members $userList ;Write-Host "$user.value a changer de groupe"} 
-        2 { Set-ADAccountPassword -Identity $userList -Reset -NewPassword(Read-Host -AsSecureString -Prompt "Saisissez le nouveau mot de passe:");Write-Host "Le mot de passe de "$user.value  -NoNewline Write-Host "à été changé !" } 
+        2 { Set-ADAccountPassword -Identity $userList -Reset -NewPassword(Read-Host -AsSecureString -Prompt "Saisissez le nouveau mot de passe:");Write-Host "Le mot de passe été changé !" } 
         3 { Set-ADUser -Identity $userList -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } }
         4 { show-Menu } 
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
