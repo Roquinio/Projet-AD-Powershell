@@ -47,10 +47,7 @@ function Main-AD {
          
                 
     }
-
-
-
-
+    
     function show-Ajout {
 
     
@@ -65,11 +62,11 @@ function Main-AD {
 
     switch ($choiseUsers) 
         {
-        1 {  New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe") -Path "CN=Users,DC=Force2,DC=net"  -Enabled $True ; show-Menu}
+        1 {  New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe") -Path "CN=Users,DC=Force2,DC=net"  -Enabled $True ;clear;Write-Host "L'utilisateur a été crée" ; show-Menu}
 
-        2 {  New-ADGroup -Name (Read-Host -Prompt "Saissez le nom du groupe") ; show-Menu }
+        2 {  New-ADGroup -Name (Read-Host -Prompt "Saissez le nom du groupe") ;clear;Write-Host "Le groupe a été crée" ; show-Menu }
        
-        3 {  New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") ; show-Menu }
+        3 {  New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation");clear;Write-Host "L'unité d'organisation a été crée"; show-Menu }
 
         4 { show-Menu }
 
@@ -96,7 +93,7 @@ function Main-AD {
 
         2 { show-groupModif }
        
-        3 {   }
+        3 {  }
 
         4 { show-Menu }
 
@@ -122,7 +119,7 @@ function Main-AD {
             
         1 { $userList=Read-Host -Prompt "Quel utilisateur souhaitez-vous supprimer ?"; Remove-ADUser -Identity $userList;clear;Write-Host "L'utilisateur a été supprimé";show-Menu }
 
-        2 { $groupList=Read-Host -Prompt "Quel groupe souhaitez-vous supprimer ?";Remove-ADGroup -Identity $groupList; clear;Write-Host "Le groupe a été supprimé";show-Menu}
+        2 { $groupList=Read-Host -Prompt "Quel groupe souhaitez-vous supprimer ?";Remove-ADGroup -Identity $groupList;clear;Write-Host "Le groupe a été supprimé";show-Menu}
        
         3 { $orgList=Read-Host -Prompt "Quelle unité d'organisation souhaitez-vous supprimer ?";Remove-ADOrganizationalUnit -Identity $orgList -Recursive;Write-Host "L'unité d'organisation a été supprimé";show-Menu }
 
@@ -153,7 +150,7 @@ function Main-AD {
 
         2 { show-supprValeur }
 
-        3 { clear ;show-Menu }
+        3 { clear;show-Menu }
 
         Default { Write-Host "Erreur, veuillez réessayer"; show-userModif}
     }
