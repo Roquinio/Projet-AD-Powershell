@@ -122,9 +122,9 @@ function Main-AD {
             
         1 { $userList=Read-Host -Prompt "Quel utilisateur souhaitez-vous supprimer ?"; Remove-ADUser -Identity $userList;clear;Write-Host "L'utilisateur a été supprimé";show-Menu }
 
-        2 {   }
+        2 { $groupList=Read-Host -Prompt "Quel groupe souhaitez-vous supprimer ?";Remove-ADGroup -Identity $groupList; clear;Write-Host "Le groupe a été supprimé";show-Menu}
        
-        3 {   }
+        3 { $orgList=Read-Host -Prompt "Quelle unité d'organisation souhaitez-vous supprimer ?";Remove-ADOrganizationalUnit -Identity $orgList -Recursive;Write-Host "L'unité d'organisation a été supprimé";show-Menu }
 
         4 { show-Menu }
 
