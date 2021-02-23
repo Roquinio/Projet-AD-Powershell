@@ -47,14 +47,14 @@ function Main-AD {
          
                 
     }
-    
+
     function show-Ajout {
 
     
     Write-Host "==================Ajouter================== 
-    1. Creations d'utilisateur.
-    2. Creations d'un groupe.
-    3. Creations d'une unité d'organisation.
+    1. Créations d'utilisateur.
+    2. Créations d'un groupe.
+    3. Créations d'une unité d'organisation.
     4. Retourner au menu principal
     "
 
@@ -82,8 +82,7 @@ function Main-AD {
     Write-Host "==================Modifications==================
     1. Modification d'un utilisateur.
     2. Modification d'un groupe.
-    3. Modification d'une unité d'organisation.
-    4. Retourner au menu principal
+    3. Retourner au menu principal
     "
     [int]$choiseModif = Read-Host -Prompt "Saisissez votre choix "
 
@@ -93,9 +92,7 @@ function Main-AD {
 
         2 { show-groupModif }
        
-        3 {  }
-
-        4 { show-Menu }
+        3 { show-Menu }
 
         Default { Write-Host "Erreur, veuillez réessayer"; show-Modif }
         }
@@ -131,9 +128,6 @@ function Main-AD {
 
     }
 
-
-
-
     function show-userModif {
 
     Write-Host "
@@ -142,8 +136,6 @@ function Main-AD {
     3. Retourner au menu principal"
    
     [int]$modifArg = (Read-Host -Prompt "Que souhaitez-vous faire ?")
-
-    
 
     switch ($modifArg) {
         1 { show-modifValeur }
@@ -159,13 +151,34 @@ function Main-AD {
 
     }
 
+    function show-groupModif {
+
+    $groupList=Read-Host -Prompt "Quel groupe souhaitez-vous modifier ?"
+
+    Write-Host "==================Modifications==================
+    1. Modifier le nom du groupe
+    2. Changer l'étendue du groupe
+    3. Changer la description du groupe
+    "
+
+    [int]$modifChoix = Read-Host -Prompt "Que souhaitez-vous modifier ?"
+
+
+    switch ($modifChoix) {
+        1 { Rename-ADObject -Identity $groupList -PassThru -NewName(Read-Host -Prompt "Saisissez le nouveau nom du groupe"); clear ;Write-Host "Le nom du groupe à été changer";show-Menu }
+        2 { Set-ADGroup -Identity $groupList -GroupScope(Read-Host -Prompt "Saisissez la nouvelle étendue du groupe"); clear ;Write-Host "L'étendue du groupe à été changer";show-Menu } 
+        3 { Set-ADGroup -Identity $groupList -Description(Read-Host -Prompt "Saissisez la nouvelle description du groupe"); clear ;Write-Host "La description du groupe à été changer";show-Menu }
+        Default { Write-Host "Erreur, veuillez réessayer";show-groupModif }
+    }
+    }
+
+
+
     function show-modifValeur {
 
     $userList=Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?"
 
     Get-ADUser -Filter 'name -like $userList' -SearchBase "CN=Users,DC=Force2,DC=net"
-    
-    <#Get-ADUser -Filter (Read-Host -Prompt "Quel utilisateur souhaitez-vous modifier ?") -SearchBase "CN=Users,DC=Force2,DC=net"  > $userList #>
 
 
     Write-Host "==================Modifications==================
@@ -182,19 +195,6 @@ function Main-AD {
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
 
         }
-    } 
-    
-    
-
-
-
-    function show-supprValeur {
-
-
-
-
-
-
     }
 
 
