@@ -120,7 +120,7 @@ function Main-AD {
     switch ($choiseSuppr) 
         {
             
-        1 { test   }
+        1 { $userList=Read-Host -Prompt "Quel utilisateur souhaitez-vous supprimer ?"; Remove-ADUser -Identity $userList;clear;Write-Host "L'utilisateur a été supprimé";show-Menu }
 
         2 {   }
        
@@ -141,7 +141,8 @@ function Main-AD {
 
     Write-Host "
     1. Modifier une valeur.
-    2. Suprimer une valeur."
+    2. Suprimer une valeur.
+    3. Retourner au menu principal"
    
     [int]$modifArg = (Read-Host -Prompt "Que souhaitez-vous faire ?")
 
@@ -151,6 +152,8 @@ function Main-AD {
         1 { show-modifValeur }
 
         2 { show-supprValeur }
+
+        3 { clear ;show-Menu }
 
         Default { Write-Host "Erreur, veuillez réessayer"; show-userModif}
     }
@@ -169,18 +172,16 @@ function Main-AD {
 
 
     Write-Host "==================Modifications==================
-    1. Rejoindre un autre groupe.
+    1. Rejoindre un groupe.
     2. Changer le mot de passe.
-    3. Changement d'unité d'organisation.
-    4. Retourner au menu principal
+    3. Retourner au menu principal
     "
     [int]$modifChoix = Read-Host -Prompt "Que souhaitez-vous modifier ?"
     
     switch ($modifChoix) {
         1 { Add-ADGroupMember -Identity (Read-Host -Prompt "Saisissez le nom du groupe:") -Members $userList ;clear;Write-Host "L'utilisateur a été changé de groupe";show-Menu} 
         2 { Set-ADAccountPassword -Identity $userList -Reset -NewPassword(Read-Host -AsSecureString -Prompt "Saisissez le nouveau mot de passe:");clear;Write-Host "Le mot de passe été changé !"; show-Menu} 
-        3 { Set-ADUser -Identity $userList -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } }
-        4 { clear ;show-Menu } 
+        3 { clear ;show-Menu } 
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
 
         }
