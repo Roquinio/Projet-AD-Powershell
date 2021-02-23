@@ -65,11 +65,11 @@ function Main-AD {
 
     switch ($choiseUsers) 
         {
-        1 {  New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe") -Path "CN=Users,DC=Force2,DC=net"  -Enabled $True }
+        1 {  New-ADUser -Name (Read-Host -Prompt "Saisissez votre nom") -AccountPassword(Read-Host -AsSecureString "Choisissez votre mot de passe") -Path "CN=Users,DC=Force2,DC=net"  -Enabled $True ; show-Menu}
 
-        2 {  New-ADGroup -Name (Read-Host -Prompt "Saissez le nom du groupe") }
+        2 {  New-ADGroup -Name (Read-Host -Prompt "Saissez le nom du groupe") ; show-Menu }
        
-        3 {  New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") }
+        3 {  New-ADOrganizationalUnit -Name (Read-Host -Prompt "Saisissez le nom de l'unité d'organisation") ; show-Menu }
 
         4 { show-Menu }
 
@@ -177,10 +177,10 @@ function Main-AD {
     [int]$modifChoix = Read-Host -Prompt "Que souhaitez-vous modifier ?"
     
     switch ($modifChoix) {
-        1 { Add-ADGroupMember -Identity (Read-Host -Prompt "Saisissez le nom du groupe:") -Members $userList ;Write-Host "L'utilisateur a été changé de groupe"} 
-        2 { Set-ADAccountPassword -Identity $userList -Reset -NewPassword(Read-Host -AsSecureString -Prompt "Saisissez le nouveau mot de passe:");Write-Host "Le mot de passe été changé !"; show-Menu} 
+        1 { Add-ADGroupMember -Identity (Read-Host -Prompt "Saisissez le nom du groupe:") -Members $userList ;Write-Host "L'utilisateur a été changé de groupe";clear;show-Menu} 
+        2 { Set-ADAccountPassword -Identity $userList -Reset -NewPassword(Read-Host -AsSecureString -Prompt "Saisissez le nouveau mot de passe:");Write-Host "Le mot de passe été changé !";clear; show-Menu} 
         3 { Set-ADUser -Identity $userList -Replace @{OU=(Read-Host -Prompt "Saisissez la nouvelle unité d'organisation:") } }
-        4 { show-Menu } 
+        4 { clear ;show-Menu } 
         Default { Write-Host "Erreur, veuillez réessayer"; show-modifValeur}
 
         }
