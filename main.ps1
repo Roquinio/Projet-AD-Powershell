@@ -120,7 +120,7 @@ function Main-AD {
     switch ($choiseSuppr) 
         {
             
-        1 {   }
+        1 { test   }
 
         2 {   }
        
