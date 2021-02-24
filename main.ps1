@@ -159,6 +159,7 @@ function Main-AD {
     1. Modifier le nom du groupe
     2. Changer l'étendue du groupe
     3. Changer la description du groupe
+    4. Revenir au menu principal 
     "
 
     [int]$modifChoix = Read-Host -Prompt "Que souhaitez-vous modifier ?"
@@ -168,6 +169,7 @@ function Main-AD {
         1 { Rename-ADObject -Identity $groupList -PassThru -NewName(Read-Host -Prompt "Saisissez le nouveau nom du groupe"); clear ;Write-Host "Le nom du groupe à été changer";show-Menu }
         2 { Set-ADGroup -Identity $groupList -GroupScope(Read-Host -Prompt "Saisissez la nouvelle étendue du groupe"); clear ;Write-Host "L'étendue du groupe à été changer";show-Menu } 
         3 { Set-ADGroup -Identity $groupList -Description(Read-Host -Prompt "Saissisez la nouvelle description du groupe"); clear ;Write-Host "La description du groupe à été changer";show-Menu }
+        4 { clear; show-Menu }
         Default { Write-Host "Erreur, veuillez réessayer";show-groupModif }
     }
     }
